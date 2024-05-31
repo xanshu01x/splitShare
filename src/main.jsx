@@ -8,12 +8,12 @@ import { ThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
     palette: {
-        type: 'dark',
+        type: 'light',
         primary: {
-            main: '#3672d4'
+            main: '#4D869C'
         },
         secondary: {
-            main: '#f1065a'
+            main: '#EEF7FF'
         },
         error: {
             main: '#ef4236'
