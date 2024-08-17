@@ -1,0 +1,10 @@
+.friends-box {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    background-color: aliceblue;
+    justify-content: space-between;
+    height: 76px;
+    padding: 16px;
+    color: black;
+}

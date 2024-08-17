@@ -1,12 +1,17 @@
 import './App.css';
-import Dashboard from './components/Dashboard';
-import { Container } from '@mui/material';
+import Header from './components/Header';
+import Dashboard from './pages/Dashboard';
+import Footer from './components/Footer';
 
 function App() {
     return (
-        <Container>
-            <Dashboard />
-        </Container>
+        <>
+            <div className='main-container'>
+                <Header />
+                <Dashboard />
+                <Footer />
+            </div>
+        </>
     );
 }
 

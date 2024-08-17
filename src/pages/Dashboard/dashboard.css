@@ -1,0 +1,28 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+}
+.total-box {
+    display: flex;
+    justify-content: space-between;
+    background-color: aliceblue;
+    color: black;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+
+.total {
+    flex: 100%;
+    color: rgb(84, 220, 175);
+}
+.owe {
+    flex: 50%;
+    color: rgb(249, 154, 154);
+}
+.get {
+    flex: 50%;
+    color: rgb(84, 220, 175);
+}
