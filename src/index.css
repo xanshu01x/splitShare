@@ -3,7 +3,6 @@
     line-height: 1.5;
     font-weight: 400;
 
-    color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
 
@@ -12,9 +11,17 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --primary-color: #0f799d;
+    --primary-color: #08253c;
+    --secondary-color: #2196f3;
+    --tertiary-color: #90caf9;
+    --error-color: #fe5c4c;
+    --warning-color: #fe9339;
+    --success-color: #91db8b;
 
-    --primary-background-color: #f5f5f5;
+    --owe-color: #fe9339;
+    --get-color: #91db8b;
+
+    --primary-background-color: #f0f4f8;
 }
 
 a {
@@ -37,6 +44,9 @@ h1 {
     font-size: 3.2em;
     line-height: 1.1;
 }
+h2 {
+    margin: 0px;
+}
 
 button {
     border-radius: 8px;
@@ -45,7 +55,7 @@ button {
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: var(--primary-color);
     cursor: pointer;
     transition: border-color 0.25s;
 }

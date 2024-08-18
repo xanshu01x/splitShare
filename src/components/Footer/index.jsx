@@ -3,7 +3,7 @@ import './footer.css';
 const Footer = () => {
     return (
         <div className='footer-container'>
-            <div className='add-expense-button'>+</div>
+            <div className='add-expense-button'>Add Expense</div>
         </div>
     );
 };
