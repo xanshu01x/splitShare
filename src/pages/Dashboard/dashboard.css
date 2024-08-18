@@ -1,11 +1,18 @@
+.main-container {
+    display: flex;
+}
 .dashboard-container {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    margin-top: 100px;
+    margin-bottom: 60px;
+    overflow-y: auto;
 }
 .total-box {
     display: flex;
     justify-content: space-between;
-    background-color: aliceblue;
+    background-color: var(--primary-background-color);
     color: black;
     align-items: center;
     padding: 10px;
@@ -16,13 +23,13 @@
 
 .total {
     flex: 100%;
-    color: rgb(84, 220, 175);
+    color: var(--get-color);
 }
 .owe {
     flex: 50%;
-    color: rgb(249, 154, 154);
+    color: var(--owe-color);
 }
 .get {
     flex: 50%;
-    color: rgb(84, 220, 175);
+    color: var(--get-color);
 }

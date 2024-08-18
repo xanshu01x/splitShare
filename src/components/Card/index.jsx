@@ -1,6 +1,5 @@
-import React from 'react';
-
 import './card.css';
+import PropTypes from 'prop-types';
 
 const Card = ({ name = '', amount = 0, currency = '₹' }) => {
     return (
@@ -12,6 +11,12 @@ const Card = ({ name = '', amount = 0, currency = '₹' }) => {
             </h2>
         </div>
     );
+};
+
+Card.propTypes = {
+    name: PropTypes.string,
+    amount: PropTypes.number,
+    currency: PropTypes.string
 };
 
 export default Card;

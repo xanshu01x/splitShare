@@ -1,19 +1,23 @@
 .footer-container {
     display: flex;
-    position: sticky;
-    bottom: 0;
+    padding: 8px;
     width: 100%;
     justify-content: center;
-    background-color: var(--primary-background-color);
+    background-color: var(--primary-color);
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .add-expense-button {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: #fff;
     border: none;
     padding: 10px 20px;
-    border-radius: 22px;
-    width: 12px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
