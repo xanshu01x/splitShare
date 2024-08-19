@@ -4,6 +4,18 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 const Dashboard = () => {
+    const friendsData = [
+        { name: 'Friend 1', amount: 100 },
+        { name: 'Friend 2', amount: 200 },
+        { name: 'Friend 3', amount: 300 },
+        { name: 'Friend 4', amount: 400 },
+        { name: 'Friend 5', amount: 500 },
+        { name: 'Friend 6', amount: 600 },
+        { name: 'Friend 7', amount: 700 },
+        { name: 'Friend 8', amount: 800 },
+        { name: 'Friend 9', amount: 900 },
+        { name: 'Friend 10', amount: 1000 }
+    ];
     return (
         <>
             <div className='main-container'>
@@ -14,16 +26,13 @@ const Dashboard = () => {
                         <h2 className='owe'>Total Owe: ₹100</h2>
                         <h2 className='get'>Total Get: ₹200</h2>
                     </div>
-                    <Card name='Friend 1' amount='100' />
-                    <Card name='Friend 2' amount='200' />
-                    <Card name='Friend 3' amount='300' />
-                    <Card name='Friend 4' amount='400' />
-                    <Card name='Friend 5' amount='500' />
-                    <Card name='Friend 6' amount='600' />
-                    <Card name='Friend 7' amount='700' />
-                    <Card name='Friend 8' amount='800' />
-                    <Card name='Friend 9' amount='900' />
-                    <Card name='Friend 10' amount='1000' />
+                    {friendsData.map((friend, index) => (
+                        <Card
+                            key={index}
+                            name={friend.name}
+                            amount={friend.amount}
+                        />
+                    ))}
                 </div>
                 <Footer />
             </div>
