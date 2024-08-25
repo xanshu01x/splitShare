@@ -16,10 +16,10 @@ export const signup = async (req, res) => {
             }
         });
         console.log(newUser);
-        res.status(201).json({ message: 'User Created Successfully' });
+        return res.status(201).json({ message: 'User Created Successfully' });
     } catch (err) {
         console.log(err);
-        res.status(500).json({ message: 'Failed to create user' });
+        return res.status(500).json({ message: 'Failed to create user' });
     }
 };
 
@@ -46,18 +46,23 @@ export const login = async (req, res) => {
         }
 
         const tokenAge = 1000 * 60 * 60;
-        const jwtToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, {
-            expiresIn: tokenAge
-        });
-        res.cookie('token', jwtToken, {
-            httpOnly: true,
-            maxAge: tokenAge
-        })
+        const jwtToken = jwt.sign(
+            { id: user.id, isAdmin: false },
+            process.env.JWT_SECRET_KEY,
+            {
+                expiresIn: tokenAge
+            }
+        );
+        return res
+            .cookie('token', jwtToken, {
+                httpOnly: true,
+                maxAge: tokenAge
+            })
             .status(200)
             .json({ message: 'Login Successfully' });
     } catch (err) {
         console.log(err);
-        res.status(500).json({ message: 'Failed to login' });
+        return res.status(500).json({ message: 'Failed to login' });
     }
 };
 
