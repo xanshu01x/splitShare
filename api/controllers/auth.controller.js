@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import prisma from '../lib/prisma.js';
 import jwt from 'jsonwebtoken';
 
-export const register = async (req, res) => {
+export const signup = async (req, res) => {
     const { name, email, password } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -16,7 +16,7 @@ export const register = async (req, res) => {
             }
         });
         console.log(newUser);
-        res.send(201).json({ message: 'User Created Successfully' });
+        res.status(201).json({ message: 'User Created Successfully' });
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: 'Failed to create user' });
@@ -35,7 +35,9 @@ export const login = async (req, res) => {
         console.log(user);
 
         if (!user) {
-            return res.status(404).json({ message: 'Invalid Credentials!' });
+            return res
+                .status(404)
+                .json({ message: 'Email is not registered!' });
         }
 
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
