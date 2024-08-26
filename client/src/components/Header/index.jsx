@@ -1,13 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 import apiRequest from '../../lib/apiRequest';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+
 import './header.css';
 
 const Header = () => {
     const navigate = useNavigate();
+    const { updateUser } = useContext(AuthContext);
 
     const handleLogout = async () => {
-        const res = await apiRequest.post('/auth/logout');
-        console.log(res);
+        await apiRequest.post('/auth/logout');
+        updateUser(null);
         localStorage.removeItem('token');
         navigate('/login');
     };
@@ -15,8 +19,13 @@ const Header = () => {
         <div className='header-container'>
             <img className='header-logo' src='./logo.png' alt='logo' />
             <span className='header-text'>SplitShare</span>
-            <div className='third'>
-                <button onClick={handleLogout}>Logout</button>
+            <div>
+                <button className='third' onClick={handleLogout}>
+                    Logout
+                </button>
+                <button className='third' onClick={() => navigate('/profile')}>
+                    Profile
+                </button>
             </div>
         </div>
     );
