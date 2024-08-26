@@ -27,27 +27,27 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await prisma.user.findUnique({
-            where: {
-                email
-            }
-        });
-        console.log(user);
+        const { password: userPassword, ...userInfo } =
+            await prisma.user.findUnique({
+                where: {
+                    email
+                }
+            });
 
-        if (!user) {
+        if (!userInfo) {
             return res
                 .status(404)
                 .json({ message: 'Email is not registered!' });
         }
 
-        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        const isPasswordCorrect = await bcrypt.compare(password, userPassword);
         if (!isPasswordCorrect) {
             return res.status(400).json({ message: 'Invalid Credentials!' });
         }
 
         const tokenAge = 1000 * 60 * 60;
         const jwtToken = jwt.sign(
-            { id: user.id, isAdmin: false },
+            { id: userInfo.id, isAdmin: false },
             process.env.JWT_SECRET_KEY,
             {
                 expiresIn: tokenAge
@@ -59,7 +59,7 @@ export const login = async (req, res) => {
                 maxAge: tokenAge
             })
             .status(200)
-            .json({ message: 'Login Successfully' });
+            .json({ message: 'Login Successfully', userInfo });
     } catch (err) {
         console.log(err);
         return res.status(500).json({ message: 'Failed to login' });

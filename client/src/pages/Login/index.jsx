@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import apiRequest from '../../lib/apiRequest';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 import './login.css';
-import { useNavigate } from 'react-router-dom';
-
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const { updateUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const validate = () => {
@@ -21,6 +22,7 @@ const Login = () => {
         }
         return true;
     };
+
     const handleLogin = async () => {
         console.log(email, password);
         if (validate()) {
@@ -29,7 +31,7 @@ const Login = () => {
                     email,
                     password
                 });
-                console.log(res);
+                updateUser(res.data.userInfo);
                 navigate('/');
             } catch (err) {
                 setError(err.response.data.message);
