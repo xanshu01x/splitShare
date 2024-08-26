@@ -1,7 +1,10 @@
-import './dashboard.css';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import Card from '../../components/Card';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+
+import './dashboard.css';
 
 const Dashboard = () => {
     const friendsData = [
@@ -16,13 +19,15 @@ const Dashboard = () => {
         { name: 'Friend 9', amount: 900 },
         { name: 'Friend 10', amount: 1000 }
     ];
+
+    const { currentUser } = useContext(AuthContext);
     return (
         <>
             <div className='main-container'>
                 <Header />
                 <div className='dashboard-container'>
                     <div className='total-box'>
-                        <h2 className='name'>Hello, Name!</h2>
+                        <h2 className='name'>Hello, {currentUser.name}!</h2>
                         <h2 className='total'>Overall: ₹100</h2>
                         <h2 className='owe'>Total Owe: ₹100</h2>
                         <h2 className='get'>Total Get: ₹200</h2>
