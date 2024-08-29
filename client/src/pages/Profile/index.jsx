@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 import './profile.css';
-import { formatDate } from '../../utils';
+import apiRequest from '../../lib/apiRequest';
 const Profile = () => {
-    const { currentUser } = useContext(AuthContext);
+    const { currentUser, updateUser } = useContext(AuthContext);
+    const [userDetails, setUserDetails] = useState(currentUser);
 
     // const validate = () => {
     //     if (email.length < 3) {
@@ -17,6 +18,19 @@ const Profile = () => {
     //     }
     //     return true;
     // };
+
+    const handleNameChange = (e) => {
+        console.log(e.target.value);
+        setUserDetails({ ...userDetails, name: e.target.value });
+    };
+    const handleSubmit = async () => {
+        try {
+            updateUser({ ...userDetails });
+            await apiRequest.put(`users/${currentUser.id}`, userDetails);
+        } catch (err) {
+            console.log(err);
+        }
+    };
     return (
         <div className='profile-container'>
             <div className='profile-items-container'>
@@ -25,24 +39,24 @@ const Profile = () => {
                     className='profile-input'
                     type='text'
                     placeholder='Name'
-                    value={currentUser.name}
+                    value={userDetails?.name}
+                    onChange={handleNameChange}
                 ></input>
                 <input
                     className='profile-input'
                     type='text'
                     placeholder='Date Of Birth'
-                    value={formatDate(currentUser.dob)}
                 ></input>
                 <input
                     className='profile-input'
                     type='text'
                     placeholder='Email'
-                    value={currentUser.email}
+                    value={userDetails?.email}
                     disabled
                 ></input>
                 Change Password Coming Soon...
                 <span className='error-text'>{}</span>
-                <button className='profile-button' onClick={() => {}}>
+                <button className='profile-button' onClick={handleSubmit}>
                     Update
                 </button>
             </div>

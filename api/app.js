@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.use('/api/user', userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/test', testRoutes);
 
